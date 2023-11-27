@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# ssh configuration file spacification
+
+
+Host test
+    HostName 100.25.15.14
+    User ubuntu
+    PubkeyAuthentication yes
+    IdentifyFile ~/.ssh/school
+    PasswordAuthentication no
+
