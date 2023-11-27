@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# uses ssh to connect to a server
+
+ssh ubuntu@100.25.15.14
