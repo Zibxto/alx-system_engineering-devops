@@ -1,14 +1,14 @@
 # ssh configuration file spacification
 
-file { '/home/zibxto/.ssh/ssh_config':
-    ensure  => 'present',
-    owner   => 'zibxto',
-    group   => 'zibxto',
-    mode    => '0600',
-    content => 'Host test
-                HostName 100.25.15.14
-                User ubuntu
-                PubkeyAuthentication yes
-                IdentifyFile ~/.ssh/school
-                PasswordAuthentication no'
+#configure ssh config
+
+file_line{ 'passauth':
+path => '/etc/ssh/ssh_config',
+line => 'PasswordAuthentication no'
+}
+
+file_line{ 'identity':
+path => '/etc/ssh/ssh_config',
+line => 'IdentityFile ~/.ssh/school'
+
 }
