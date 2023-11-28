@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Configure your Nginx server so that /redirect_me is redirecting to another page
+
+sudo apt-get update
+sudo apt-get -y install nginx
+new_string="location /redirect_me {
+        return 301 https://www.alxafrica.com;
+    }"
+sudo sed -i "$new_string" /etc/nginx/sites-available/default
+sudo service nginx start
