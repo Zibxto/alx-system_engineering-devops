@@ -8,5 +8,5 @@ echo "Hello World!" > /var/www/html/index.
 new_string="\\\tlocation /redirect_me {
         \n\t\t return 301 https://www.alxafrica.com;\n
     \t}\n"
-sudo sed -i "$new_string" /etc/nginx/sites-available/default
+sudo sed -i "30i $new_string" /etc/nginx/sites-available/default
 sudo service nginx start
