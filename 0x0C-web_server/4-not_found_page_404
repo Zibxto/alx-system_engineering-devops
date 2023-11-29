@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Configure your Nginx server so that /redirect_me is redirecting to another page
+
+
+# Create a configuration file for the custom 404 page
+sudo bash -c 'cat > /etc/nginx/sites-available/custom_404' <<EOL
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        root /usr/share/nginx/html;
+        index index.html;
+        error_page 404 /404.html;
+        location = /404.html {
+            internal;
+            root /usr/share/nginx/html;
+            index index.html;
+            rewrite ^ /404-error.html break;
+        }
+    }
+
+    # Additional server configuration can be added here if needed
+}
+EOL
+
+# Create the custom 404 error page
+sudo bash -c "echo 'Ceci n'est pas une page' > /usr/share/nginx/html/404-error.html"
+sudo systemctl reload nginx
