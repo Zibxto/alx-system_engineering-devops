@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
 # Install and configure HAproxy on your lb-01 server.
+# # Distributes request using roundrobin; sends traffic to servers: web-01 and web-02
 
 BACKEND="backend my_servers
 	balance roundrobin
