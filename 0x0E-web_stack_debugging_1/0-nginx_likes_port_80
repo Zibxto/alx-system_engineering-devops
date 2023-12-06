@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # Bash script that configures a server to listen on port 80
 
-sed -i "21a \\\tlisten 80 default_server;" /etc/nginx/sites-available/default
+sudo sed -i "s/sites-enabled/sites-available/" /etc/nginx/nginx.conf
 sudo service nginx restart
