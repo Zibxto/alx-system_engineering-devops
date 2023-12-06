@@ -4,5 +4,5 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo service nginx start
-sed -i "21a \\tlisten 80 default_server;" /etc/nginx/sites-available/default
+sed -i "21a \\\tlisten 80 default_server;" /etc/nginx/sites-available/default
 sudo service nginx restart
