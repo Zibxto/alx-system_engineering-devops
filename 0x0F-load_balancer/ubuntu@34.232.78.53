@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#Configure Nginx so that its HTTP response contains a custom header - X-Served-B: <hostname>
+
+
+HOST_NAME=$(hostname)
+NEW_HEADER = "\tX-Served-By $HOST_NAME"
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo sed -i "17i $NEW_HEADER" /etc/nginx/nginx.conf
+sudo service nginx start
