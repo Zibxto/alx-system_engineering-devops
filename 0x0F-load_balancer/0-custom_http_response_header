@@ -4,9 +4,18 @@
 
 HOST_NAME=$(hostname)
 NEW_HEADER="\tadd_header X-Served-By $HOST_NAME"
+REDIRECT="\\\tlocation /redirect_me {\n\t\t return 301 https://google.com;\n\t}\n"
+NOTFOUND="error_page 404 /custom_404.html;\n\\tlocation = /custom_404.html {\n\t\t root /usr/share/nginx/html;\n\t\tinternal;\n\t}\n"
+PATTERN="#error_page 404 /404.html;"
+
 sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
+sudo service nginx start
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+sudo sed -i "30i $REDIRECT" /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
+sudo sed -i "s@$PATTERN@$NOTFOUND@" /etc/nginx/sites-available/default
 sudo sed -i "s/# server_tokens off;/server_tokens off;" /etc/nginx/nginx.conf
 sudo sed -i "22a\ $NEW_HEADER" /etc/nginx/nginx.conf
-sudo service nginx start
+sudo service nginx restart
