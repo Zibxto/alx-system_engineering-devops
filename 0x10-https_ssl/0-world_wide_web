@@ -18,4 +18,3 @@ if [ -z "$2" ]; then
 else
     record "$1" "$2"
 fi
-    
