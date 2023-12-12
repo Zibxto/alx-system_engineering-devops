@@ -1,7 +1,7 @@
- #!/usr/bash/env bash
- # display information about subdomains
+#!/usr/bash/env bash
+# display information about subdomains
 
- record ()
+record ()
 {
     printf "The subdomain %s is a " "$2"
     dig "$2.$1" | grep -A1 'ANSWER SECTION:' | awk -F' ' '{ printf $4 }'
