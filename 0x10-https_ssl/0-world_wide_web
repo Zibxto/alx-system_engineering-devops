@@ -1,4 +1,4 @@
-#!/usr/bash/env bash
+#!/usr/bin/env bash
 # display information about subdomains
 
 record ()
