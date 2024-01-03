@@ -11,7 +11,7 @@ if __name__ == "__main__":
             r2 = requests.get('https://jsonplaceholder.typicode.com/users/{}'
                               .format(sys.argv[1]))
             res2 = r2.json()
-            employee_username = res2.get("name")
+            employee_username = res2.get("username")
 
             r = requests.get('https://jsonplaceholder.typicode.com/todos')
             res = r.json()
