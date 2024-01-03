@@ -28,8 +28,9 @@ if __name__ == "__main__":
                 if item.get("completed") is True:
                     number_of_done_tasks += 1
 
-            print(f"Employee {employee_name} is done with tasks(\
-                  {number_of_done_tasks}/{total_number_of_tasks})")
+            print("Employee {} is done with tasks({}/{})"
+                  .format(employee_name, number_of_done_tasks,
+                          total_number_of_tasks))
 
             for item in todo:
                 if item.get("completed") is True:
