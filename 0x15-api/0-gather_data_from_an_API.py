@@ -4,14 +4,14 @@ Python script that, using this a REST API, for a given employee ID,
 returns information about his/her TODO list progress
 """
 import requests
-from sys import argv
+import sys
 
 
 if __name__ == "__main__":
     try:
-        if int(argv[1]):
+        if int(sys.argv[1]):
             r2 = requests.get('https://jsonplaceholder.typicode.com/users/{}'
-                              .format(argv[1]))
+                              .format(sys.argv[1]))
             res2 = r2.json()
             employee_name = res2.get("name")
 
@@ -21,7 +21,7 @@ if __name__ == "__main__":
             number_of_done_tasks = 0
             todo = []
             for item in res:
-                if item.get("userId") == int(argv[1]):
+                if item.get("userId") == int(sys.argv[1]):
                     total_number_of_tasks += 1
                     todo.append(item)
 
