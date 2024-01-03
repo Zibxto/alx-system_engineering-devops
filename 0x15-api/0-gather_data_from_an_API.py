@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""
+"""python3 -c 'print(__import__("my_module").__doc__)'
 Python script that, using this a REST API, for a given employee ID,
 returns information about his/her TODO list progress
 """
@@ -29,7 +29,7 @@ if __name__ == "__main__":
                 if item.get("completed") is True:
                     number_of_done_tasks += 1
 
-            print(f"Employee {employee_name} is done with tasks(
+            print(f"Employee {employee_name} is done with tasks(\
                   {number_of_done_tasks}/{total_number_of_tasks})")
 
             for item in todo:
