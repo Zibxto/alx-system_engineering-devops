@@ -1,29 +1,38 @@
 #!/usr/bin/python3
 """
-Extends your Python script to export data in the json format.
+Request from API; Return TODO list progress of all employees
+Export this data to JSON
 """
 import json
 import requests
 
-if __name__ == "__main__":
-    # try:
-    r2 = requests.get('https://jsonplaceholder.typicode.com/users')
-    employees = r2.json()
 
-    r = requests.get('https://jsonplaceholder.typicode.com/todos')
-    res = r.json()
-    todo_obj = {}
-    todo_arr = []
-    for employee in employees:
-        for item in res:
-            if item.get("userId") == employee.get("id"):
-                todo_arr.append(item)
-        todo_obj[item.get("userId")] = todo_arr
+def all_to_json():
+    """return API data"""
+    USERS = []
+    userss = requests.get("http://jsonplaceholder.typicode.com/users")
+    for u in userss.json():
+        USERS.append((u.get('id'), u.get('username')))
+    TASK_STATUS_TITLE = []
+    todos = requests.get("http://jsonplaceholder.typicode.com/todos")
+    for t in todos.json():
+        TASK_STATUS_TITLE.append((t.get('userId'),
+                                  t.get('completed'),
+                                  t.get('title')))
 
     """export to json"""
+    data = dict()
+    for u in USERS:
+        t = []
+        for task in TASK_STATUS_TITLE:
+            if task[0] == u[0]:
+                t.append({"task": task[2], "completed": task[1],
+                          "username": u[1]})
+        data[str(u[0])] = t
     filename = "todo_all_employees.json"
-    with open(filename, "w") as file:
-        json.dump(todo_obj, file)
+    with open(filename, "w") as f:
+        json.dump(data, f, sort_keys=True)
 
-    # except Exception as value:
-    #     print(value)
+
+if __name__ == "__main__":
+    all_to_json()
