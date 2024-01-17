@@ -11,9 +11,10 @@ def top_ten(subreddit):
     """Function that queries the Reddit API"""
     headers = requests.utils.default_headers()
     headers.update({'User-Agent': 'CustomBot/1.0'})
-    res = requests.get("https://www.reddit.com/r/{}/hot.json?limit=9"
+    params = {"limit": 9}
+    res = requests.get("https://www.reddit.com/r/{}/hot.json"
                        .format(subreddit),
-                       headers=headers)
+                       headers=headers, params=params)
     res = res.json()
     children = res.get('data', {}).get('children')
     if not children:
