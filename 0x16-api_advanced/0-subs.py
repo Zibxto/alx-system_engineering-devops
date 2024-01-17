@@ -10,18 +10,14 @@ import requests
 
 def number_of_subscribers(subreddit):
     """Function that queries the Reddit API"""
-    try:
-        res = requests.get("https://www.reddit.com/r/{}/about.json"
-                        .format(subreddit),
-                        headers={'User-Agent': 'CustomBot/1.0'})
-
-        if res.status_code == requests.codes.ok:
-            res = res.json()
-            if 'subscribers' in res['data']:
-                return res['data']['subscribers']
-            else:
-                return 0
-        else:
-            return 0
-    except Exception:
+    headers = requests.utils.default_headers()
+    headers.update({'User-Agent': 'CustomBot/1.0'})
+    res = requests.get("https://www.reddit.com/r/{}/about.json"
+                       .format(subreddit),
+                       headers=headers)
+    res = res.json()
+    subscribers = res.get('data', {}).get('subscribers')
+    if not subscribers:
         return 0
+    else:
+        return subscribers
