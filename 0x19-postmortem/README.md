@@ -1,4 +1,4 @@
-![500 error page](https://github.com/zibxto/alx-system_engineering-devops/0x19-postmortem/500_error.jpg)
+![500 error page](https://github.com/Zibxto/alx-system_engineering-devops/blob/master/0x19-postmortem/500_error.jpg?raw=true)
 
 
 ## Issue Summary
